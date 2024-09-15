@@ -9,17 +9,10 @@ import { updateContact } from '@/data/actions/updateContact';
 import type { Contact } from '@prisma/client';
 
 export default function ContactForm({ contact }: { contact: Contact }) {
-  const [isPending, startTransition] = useTransition();
+  const updateContactById = updateContact.bind(null, contact.id);
 
   return (
-    <form
-      onSubmit={async e => {
-        e.preventDefault();
-        startTransition(async () => {
-          const formData = new FormData(e.currentTarget);
-          await updateContact(contact.id, formData);
-        });
-      }}
+    <form action={updateContactById}
       className="flex max-w-[40rem] flex-col gap-4 @container"
     >
       <div className="grip-rows-6 grid gap-2 @sm:grid-cols-[1fr_4fr] @sm:gap-4">
@@ -62,8 +55,8 @@ export default function ContactForm({ contact }: { contact: Contact }) {
         <LinkButton theme="secondary" href={`/contacts/${contact.id}`}>
           Cancel
         </LinkButton>
-        <Button disabled={isPending} theme="primary" type="submit">
-          {isPending ? 'Saving...' : 'Save'}
+        <Button theme="primary" type="submit">
+          Save
         </Button>
       </div>
     </form>

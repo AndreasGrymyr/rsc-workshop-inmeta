@@ -4,12 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import ContactList from '@/components/ContactList';
-import NewContactButton from '@/components/NewContactButton';
 import Search from '@/components/Search';
 
 import { getContacts } from '@/data/services/getContacts';
 import Logo from '@/public/next-js.svg';
 import type { Metadata } from 'next';
+import { createEmptyContact } from '@/data/actions/createEmptyContact';
+import Button from '@/components/ui/Button';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,7 +33,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Suspense>
               <div className="flex items-center gap-2 border-b border-gray px-8 py-4">
                 <Search />
-                <NewContactButton />
+                <form action={createEmptyContact}>
+                  <Button
+                   type="submit"
+                    theme="secondary"
+                    >
+                    New
+                    </Button>
+                </form>
               </div>
               <ContactList contacts={contacts} />
             </Suspense>
