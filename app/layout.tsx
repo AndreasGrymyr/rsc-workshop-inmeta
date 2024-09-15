@@ -16,7 +16,7 @@ import SubmitButton from '@/components/ui/SubmitButton';
 const inter = Inter({ subsets: ['latin'] });
 
 // Tell Next.js to always generate this page on the server (dynamic rather than static), enable for production to make the sidebar dynamic
-// export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   description: 'React Server Components and React 19 in the Next.js App Router',

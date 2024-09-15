@@ -4,12 +4,26 @@ import { getContact } from '@/data/services/getContact';
 import GithubLogo from '@/public/github-mark.svg';
 import DeleteContactButton from './_components/DeleteContactButton';
 import Favorite from './_components/Favorite';
+import { Metadata } from 'next';
 
 type PageProps = {
   params: {
     contactId: string;
   };
 };
+
+// In local development, the 'generateMetadata' will not be streamed and will block the page until it's resolved.
+// export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+//   const contact = await getContact(params.contactId);
+
+//   return contact && contact.first && contact.last ? {
+//     description: `Contact details for ${contact.first} ${contact.last}`,
+//     title: `${contact.first} ${contact.last}`,
+//   } : {
+//     description: `Contact details for an unamed contact`,
+//     title: 'Unamed Contact',
+//   };
+//   }
 
 export default async function ContactPage({ params }: PageProps) {
   const contact = await getContact(params.contactId);

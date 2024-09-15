@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    reactCompiler: true
+    reactCompiler: true,
+    staleTimes: {
+      dynamic: 30
+    }
   },
   images: {
     remotePatterns: [
