@@ -1,12 +1,11 @@
 'use client';
-
 import React, { useTransition } from 'react';
-import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import LinkButton from '@/components/ui/LinkButton';
 import TextArea from '@/components/ui/TextArea';
 import { updateContact } from '@/data/actions/updateContact';
 import type { Contact } from '@prisma/client';
+import SubmitButton from '@/components/ui/SubmitButton';
 
 export default function ContactForm({ contact }: { contact: Contact }) {
   const updateContactById = updateContact.bind(null, contact.id);
@@ -55,9 +54,9 @@ export default function ContactForm({ contact }: { contact: Contact }) {
         <LinkButton theme="secondary" href={`/contacts/${contact.id}`}>
           Cancel
         </LinkButton>
-        <Button theme="primary" type="submit">
+        <SubmitButton theme="primary" >
           Save
-        </Button>
+        </SubmitButton>
       </div>
     </form>
   );
